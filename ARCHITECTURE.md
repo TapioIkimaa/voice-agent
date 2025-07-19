@@ -48,7 +48,7 @@ sequenceDiagram
 - **Why Azure Communication Services?** As a native Azure service, it offers seamless integration, robust security (GDPR/HIPAA compliance), and scalability, fitting perfectly within the chosen cloud ecosystem.
 
 ### b. Voice Agent Service (Azure Kubernetes Service - AKS)
-- **Responsibility:** The core of the system. This service, deployed on AKS, orchestrates the entire call flow. It manages the conversation state, interacts with the STT/TTS and LLM services, and communicates with external APIs.
+- **Responsibility:** The core of the system. This service, deployed on AKS, receives the real-time audio stream from the Telephony service. It orchestrates the entire call flow, managing the conversation state, streaming audio to STT services, handling responses from the LLM, and sending generated audio back to the user via the Telephony service.
 - **Why AKS?** AKS provides managed Kubernetes, allowing for easy scaling of the voice agent containers to handle up to 100 concurrent calls and beyond. It also offers high availability and resilience.
 
 ### c. STT & TTS (ElevenLabs)
