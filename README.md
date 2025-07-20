@@ -87,3 +87,10 @@ In the interest of rapid prototyping, several simplifications were made:
 - **No real booking integration**: The prototype saves bookings to a local JSON file instead of integrating with a real-world booking system.
 - **Local AI models**: All models are loaded and run locally. In a production environment, these would likely be managed as separate, scalable services as described in `ARCHITECTURE.md`.
 - **Non-streamed interaction**: The user records their entire message, which is then processed. In a production system, the audio would be streamed to the STT service in real-time to reduce latency.
+
+## Demonstration video
+
+<video controls>
+  <source src="demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
