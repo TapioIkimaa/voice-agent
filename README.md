@@ -90,7 +90,4 @@ In the interest of rapid prototyping, several simplifications were made:
 
 ## Demonstration video
 
-<video controls>
-  <source src="demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<video src="demo.mp4">
