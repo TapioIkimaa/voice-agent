@@ -85,8 +85,45 @@ sequenceDiagram
 - **AI:** Azure OpenAI Service (LLM)
 - **Databases:** Azure Cosmos DB, Azure Blob Storage, Azure Cache for Redis
 - **Monitoring:** Azure Monitor, Application Insights, Log Analytics
+- **DevOps:** GitHub Actions or Azure DevOps (CI/CD), Pulumi or Bicep (IaC)
 
-## 4. Security & GDPR Compliance
+## 4. DevOps & Automation
+
+### a. Continuous Integration & Continuous Deployment (CI/CD)
+- **Responsibility:** Automating the build, testing, and deployment of the Python and C# microservices.
+- **Technology Choices:** The project can leverage either **GitHub Actions** or **Azure DevOps Pipelines** for CI/CD.
+
+#### Option 1: GitHub Actions
+- **Best for:** Teams already familiar with GitHub for source control and those who prefer a YAML-based, code-centric approach to CI/CD.
+- **Workflow:**
+    - **On Pull Request:** The pipeline will trigger automatically to run static analysis, unit tests, and integration tests for both the Python and C# codebases.
+    - **On Merge to `main`:** After a successful pull request, the pipeline will build and push Docker images for each service to **Azure Container Registry (ACR)**. It will then trigger a deployment to the **Azure Kubernetes Service (AKS)** cluster, ensuring a seamless and automated release process.
+
+#### Option 2: Azure DevOps Pipelines
+- **Best for:** Teams deeply integrated with the Microsoft ecosystem, preferring a comprehensive suite of DevOps tools, and seeking native Azure integrations.
+- **Workflow:**
+    - Azure Pipelines offer both YAML and classic UI-based pipeline definitions.
+    - It provides robust features for managing build agents, artifact feeds, and release gates, with deep integration into Azure services for streamlined deployments to AKS.
+
+### b. Infrastructure as Code (IaC)
+- **Responsibility:** Defining and managing all Azure cloud resources in a declarative and version-controlled manner.
+- **Technology Choices:** The project can leverage either **Pulumi** or **Bicep**, depending on team preference and skillset.
+
+#### Option 1: Pulumi (Developer-Centric Approach)
+- **Best for:** Teams that want to use general-purpose programming languages (like Python and C#) to manage infrastructure, applying software engineering best practices like unit testing and creating reusable components.
+- **Workflow:**
+    - The infrastructure for the Python services can be defined in Python, and the C# services' infrastructure can be defined in C#.
+    - This empowers developers to own their infrastructure code in a language they are already familiar with.
+    - The Pulumi state can be managed by the Pulumi Service or a self-hosted backend like Azure Blob Storage.
+
+#### Option 2: Bicep (Azure-Native Approach)
+- **Best for:** Teams that are exclusively focused on Azure and prefer a simple, declarative DSL that guarantees immediate support for all new Azure features.
+- **Workflow:**
+    - Bicep files provide a clean and readable way to define all Azure resources.
+    - As a Microsoft-native tool, it offers seamless integration with Azure CLI and Azure DevOps/GitHub Actions.
+    - This approach is excellent for its simplicity and direct mapping to Azure Resource Manager (ARM) templates.
+
+## 5. Security & GDPR Compliance
 - **Data Residency:** All data is stored within EU data centers, satisfying GDPR requirements.
 - **Data Encryption:** Data is encrypted both in transit (using TLS) and at rest (using Azure's default storage encryption).
 - **PII Handling:** The system is designed to handle Personally Identifiable Information (PII) securely. Access to sensitive data is restricted, and the LLM is accessed through the compliant Azure OpenAI service.
