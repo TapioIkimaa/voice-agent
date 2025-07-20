@@ -134,7 +134,7 @@ async def process_audio(recording: UploadFile):
             response_text = "Valitettavasti en löytänyt vapaita aikoja valitsemallesi palvelulle. Minkä tyyppisen ajan haluaisit varata?"
             conversation_state["current_step"] = "ask_appointment_type"
         elif len(matching_slots) == 1:
-            response_text = f"Löytyi vapaa aika, {matching_slots[0]['time']}. Millä nimellä varaus tehdään?"
+            response_text = f"Löytyi vapaa aika, {matching_slots[0]["time"]}. Millä nimellä varaus tehdään?"
             conversation_state["current_step"] = "ask_name"
         else:
             response_text = "Vapaita aikoja ovat: " + ", ".join(
@@ -149,7 +149,7 @@ async def process_audio(recording: UploadFile):
         if confidence > 0.5:
             selected_slot = next((s for s in matching_slots if s["time"] == found_type), None)
             conversation_state["selected_time"] = selected_slot["time"]
-            response_text = f"Valitsit ajan {selected_slot['time']} palvelulle {selected_slot['type']}. Millä nimellä varaus tehdään?"
+            response_text = f"Valitsit ajan {selected_slot["time"]} palvelulle {selected_slot["type"]}. Millä nimellä varaus tehdään?"
             conversation_state["current_step"] = "ask_name"
         else:
             response_text = "Valitettavasti en tunnistanut valitsemaasi aikaa. Vapaita aikoja ovat: " + ", ".join(
@@ -158,7 +158,7 @@ async def process_audio(recording: UploadFile):
     elif conversation_state["current_step"] == "ask_name":
         user_name = transcript.strip()
         conversation_state["user_name"] = user_name
-        response_text = f"Kiitos, {user_name}. Vahvistetaan varaus: {conversation_state['appointment_type']} {conversation_state['selected_time']}. Onko tämä oikein?"
+        response_text = f"Kiitos, {user_name}. Vahvistetaan varaus: {conversation_state["appointment_type"]} {conversation_state["selected_time"]}. Onko tämä oikein?"
         conversation_state["current_step"] = "confirm_booking"
 
     elif conversation_state["current_step"] == "confirm_booking":
@@ -180,7 +180,7 @@ async def process_audio(recording: UploadFile):
                 "appointment_type": conversation_state["appointment_type"],
                 "time": conversation_state["selected_time"],
             })
-            with open(bookings_file, "w", encoding='utf-8') as f:
+            with open(bookings_file, "w", encoding="utf-8") as f:
                 json.dump(bookings, f, ensure_ascii=False, indent=4)
 
         elif no_similarity > yes_similarity and no_similarity > 0.4:
