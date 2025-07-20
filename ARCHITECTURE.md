@@ -79,7 +79,7 @@ sequenceDiagram
 - **Why Azure Monitor?** It offers a unified solution for monitoring, alerting, and diagnostics, deeply integrated with AKS, Azure Communication Services, and other Azure resources.
 
 ## 3. Tech Stack Summary
-- **Backend:** Python (running in Docker containers on AKS)
+- **Backend:** Python and C#/.NET (running in Docker containers on AKS)
 - **Infrastructure:** Azure Kubernetes Service (AKS), Azure Networking
 - **Voice Stack:** Azure Communication Services (Telephony), ElevenLabs (STT/TTS)
 - **AI:** Azure OpenAI Service (LLM)
