@@ -90,4 +90,4 @@ In the interest of rapid prototyping, several simplifications were made:
 
 ## Demonstration video
 
-<video src="demo.mp4">
+https://github.com/user-attachments/assets/ea2c9f56-3811-4415-9f94-bdd629a449a1
